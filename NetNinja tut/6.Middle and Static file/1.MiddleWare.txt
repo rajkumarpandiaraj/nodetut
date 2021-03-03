@@ -1,0 +1,22 @@
+                                            1.MiddleWare
+
+MiddleWare is the code which runs(on the server) between getting a request and sending a response.
+
+app.use(),app.get() is a example of middleware. 
+// use next()
+
+MiddleWare Examples :
+    -> Logger middleware to log details is every Request.
+    -> Authentication check middleware for protected routes
+    -> MiddleWare to parse.JSON data from requests.
+    -> return 404 pages.
+///////////////////////////////////////////////////////////////
+
+third party middleware
+morgan for logging like that
+
+install npm i morgan
+require morgan
+app.use(morgan())
+
+loke this

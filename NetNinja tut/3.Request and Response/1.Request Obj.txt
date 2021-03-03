@@ -1,0 +1,34 @@
+                                    1.Request Obj
+
+whenever we made a request a func in the createServer() got triggered and that func has two ars req and res.
+now we gonna see about the req obj.
+
+In server.js
+    const http = require('http');
+
+    const server = http.createServer((req, res) =>{
+        console.log(req) //request obj has so many properties
+        console/log(req.url, req.method) // prints url entered in the browser http and method type like get,pos like that
+    });
+
+    server.listen(3000, 'localhost', () =>{
+    console.log('listening for request on port 3000')
+})
+
+o/p 
+node server
+
+now we open the localhost:3000 in browser ,the request was made and req obj , req url and req method got printed.
+In terminal
+{request obj with many properties}
+/ GET //  GET is the method type and / is the url
+
+if we type the url as localhost:3000/about,
+In terminal
+{request obj with many properties}
+/about GET //  GET is the method type and /about is the url
+
+
+as far now we didn't get any response in the browser window, in next topic lets see that.
+
+

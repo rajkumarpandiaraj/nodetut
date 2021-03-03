@@ -1,0 +1,8 @@
+In Test.js
+
+const name = "rk";
+console.log(name);
+
+To run the js file in node
+--> node <filename>
+node Test //rk

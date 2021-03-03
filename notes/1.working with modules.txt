@@ -1,0 +1,40 @@
+                                            1.Working with module
+
+creating module and using it anywhere we want.
+
+1.creating module
+In add.js
+    const sum = (n1,n2) => n1 + n2;
+    module.exports = sum // exporting the sum func/module
+
+In main.js
+    const sumOfNum = require('./add) //.js not needed
+    console.log(sumOfNum); // [function : sum] o/p
+    console.log(sumOfNum(2,2)) // 4
+Here we created one module and imported that in main.js
+/////////////////////////////////////////////////////////////////////////////////////////
+
+Now, we are going to create more than one module and using it.
+In add.js
+    const sum = (n1,n2) => n1 + n2;
+    const sub = (n1,n2) => n1-n2;
+    class someMathObj{
+        constructor(){
+            console.log('obj created)'
+        }
+    }
+    module.exports.sum = sum // exporting the sum func/module
+    module.exports.sub = sub
+    module.exports.someMathObj = someMathObj
+
+    instead of exporting individually we can export this as obj
+    module.exports = { sum, sub, someMathObj }
+
+
+In main.js
+    const tutorial = require('./add) //.js not needed
+    console.log(tutorial); // logs an obj
+    console.log(tutorial.sum(2,2)) // 4
+    console.log(tutorial.sub(5,2)) // 3
+    console.log(new tutorial.someMathObj()) // objcreated 
+Here we created more than one module and imported that in main.js

@@ -1,0 +1,77 @@
+                    4.File System --> NodeJs built-in Module
+
+Using FileSystem to 1.Read files, 
+                    2.Write files, 
+                    3.create directories and 
+                    4.delete Files
+
+In docs folder created blog1.txt
+    Hello, world.
+
+In file.js 
+
+const fs = require('fs') //importing the FileSystemModule
+
+//reading a file
+//fs.readFile('absolute path to the file', callbackFunc with data & err arg)
+
+fs.readFile('./docs/blog1.txt', (data, err) =>{
+    if(err){
+        console.log(err)
+    }
+    console.log(data); //<buffer 65 67 67 68 3c>, to get the string use the toString() method
+    console.log(data.toString());
+})
+
+//readFile is a async func takes sometime, if the action got finished, the callbackFunc got triggered
+
+we get an err if we try to read the file that not exists.
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+//writeFile() takes three args
+//1.absolute path
+//2.content want to replace/write
+//3.callbackFunc
+
+fs.writeFile('./docs/blog1.txt', 'hello Rk', ()=>{
+    console.log('file was written');
+});
+
+o/p:
+    blog1.txt => hello world --> hello rk
+    file was written.
+
+if we try write the file doesn't exists, writeFile() creates that file and write the content.
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//mkdir()
+//creating the asssets folder now
+
+if(!fs.existsSync('./assets')){ // checks for the folder existsness.
+fs.mkdir('./assets', (err) =>{
+    if(err){
+        console.log(err)
+    }
+})
+}
+
+o/p :
+    assets folder got created in the current directory.
+
+if we try to create the folder already exists, we got an err.
+
+////////////////////////////////////////////////////////////////////////////////
+remove or delete directory
+
+if(fs.existsSync(./assets)){
+    fs.rmdir('./assets', (err) =>{
+        if(err){
+            console.log(err)
+        }
+    })
+}
+
+o/p:
+ removes the assets folder in the current directory.
+
+ /////////////////////////////////////////////////////////////////

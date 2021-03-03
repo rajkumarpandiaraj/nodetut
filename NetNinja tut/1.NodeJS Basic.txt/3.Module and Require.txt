@@ -1,0 +1,55 @@
+                            3.Module And require()
+Some we may spilt the problems into modules and and import that in the required place.
+
+In people.js
+    const peopleArr = ['rk', 'ak', 'sk'];
+    console.log(peopleArr);
+
+In Module.js
+    //now we are going to import the people.js in this module.js
+
+    const xyz = require('./people')//relative path of the file
+
+If we run thw Module.js file, node search for the people.js file and run that people.js and peopleArr got printed
+o/p
+node Module //['rk', 'ak', 'sk']
+
+//If we log the xyz in Module.js --> empty Obj,coz we didn't export the peopleArr in the people.js
+In Module.js
+
+    const xyz = require('./people')//relative path of the file
+    console.log(xyz)//{}
+    console.log(peopleArr) //error
+
+To get the obj for xyz, export the  peopleArr in the people.js
+In people.js
+    const peopleArr = ['rk', 'ak', 'sk'];
+module.exports = peopleArr;
+
+In Module.js
+
+    const xyz = require('./people')//relative path of the file
+    console.log(xyz)// peopleArr
+
+To export multiple thing use Obj
+In people.js
+    const peopleArr = ['rk', 'ak', 'sk'];
+    const villageName = 'Tup';
+    const ages = {one : 18, two : 23, three : 25}
+module.exports = {peopleArr, villageName, ages};
+
+In Module.js
+
+    const xyz = require('./people')//relative path of the file
+    console.log(xyz.peopleArr)//['rk', 'ak', 'sk']
+    console.log(xyz.villageName)//Tup
+    console.log(xyz.ages)//{one : 18, two : 23, three : 25}
+
+    //////////////////////////////////////////////////////////////
+    Use destructoring to import multiple thing
+    const {peopleArr, ages} = require('../people)
+    console.log(peopleArr)//['rk', 'ak', 'sk']
+    console.log(ages)//{one : 18, two : 23, three : 25}
+
+
+These are Manually created module, but node js also comes with different modules

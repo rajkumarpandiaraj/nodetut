@@ -1,0 +1,51 @@
+                                        1.server
+
+Now we ae going to create a server and make the server to listen for the request with unique port number.
+
+In server.js
+    const http = require('http');
+
+    const server = http.createServer((req, res) =>{
+        console.log('request made')
+    })
+
+//here http.createServer() creates the server and createServer() func takes func as its args and run that func whenever we made the req in the browser.
+//saving the createServer() instance in the const server for the further use of server.
+
+//Now we gonna make the server to listen for the particular port number.
+
+server.listen(3000, 'localhost', () =>{
+    console.log('listening for request on port 3000')
+})
+
+//here listen() makes the server to listen for th request
+//listen() takes three args 
+    1.port number
+    2.domain name, by default it is localhost
+    3.func, which got triggered when the server is started to listen for the request.
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+                                    localhost and Port number
+
+-> localhost is like domain name on the web
+-> port number are like doors in computer.
+
+////////////////////////////////////////////////////////////
+In server.js
+    const http = require('http');
+
+    const server = http.createServer((req, res) =>{
+        console.log('request made')
+    });
+
+    server.listen(3000, 'localhost', () =>{
+    console.log('listening for request on port 3000')
+})
+
+o/p
+node server
+listening for request on port 300 got printed in the terminal after the server listen for the server
+
+if we run the localhost:3000 in browser the page got loads and waits for the res, but we didn't provide any response
+but "request made" got printed in terminal.
+

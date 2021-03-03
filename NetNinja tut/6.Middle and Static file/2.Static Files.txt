@@ -1,0 +1,18 @@
+                        2.Static files
+
+To add css or images to the ejs file, use express.static() middleware
+
+In public/style.css
+body{
+    background-color : 'red';
+}
+
+
+In app.js
+
+app.use(express.static('public'))
+
+In head.ejs
+<head>
+    <link href = '/style.css'></link> // '/' indicates thats it is a static file.
+</head>

@@ -1,0 +1,20 @@
+                            3.Working with ReadLine Module
+
+ReadLine Module allow us to prompt the user and get the input from the user
+
+const readline = require('readline');
+
+
+
+
+asxass
+
+
+
+
+
+
+
+
+
+

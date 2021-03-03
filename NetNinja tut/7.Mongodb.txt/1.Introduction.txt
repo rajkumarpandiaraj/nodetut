@@ -1,0 +1,19 @@
+                                1.Introduction to Db
+
+SQL vs NoSQL
+
+SQL : Tables Rows Columns
+NoSQL : Collections, Documents
+
+Collections :
+
+blogs Collection
+    blogs Documents
+    blogs Documents
+    blogs Documents
+
+blogs Documents = {
+    id : _id,
+    title : 'title'
+    body : "body"
+}

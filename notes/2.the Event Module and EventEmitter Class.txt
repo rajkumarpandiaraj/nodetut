@@ -1,0 +1,39 @@
+                            2.The Events Module and EventEmitter class
+
+const EventEmitter = require('events')// importing event module
+const eventEmitter = new EventEmitter() // creating new instance
+
+//syntax for event creator
+//eventEmitter.on('event', () => {})
+
+eventEmitter.on('tutorial', () => {
+    console.log('tutorial event triggered');
+});
+
+if we run the program now, nothing will happens coz, we just created the event, we have to emit th event.
+
+//syntax to emit event
+eventEmitter.emit('eventName', arg1,arg2);
+
+eventEmitter.emit('tutorial')
+
+now we run the program
+o/p :
+    tutorial event triggered.
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+Event Call back with args
+
+const EventEmitter = require('events')// importing event module
+const eventEmitter = new EventEmitter() // creating new instance
+
+
+eventEmitter.on('tutorial', (n1,n2) => {
+    console.log(n1 + n2);
+});
+
+eventEmitter.emit('tutorial', 3, 2)
+
+now we run the program
+o/p :
+    5
+    

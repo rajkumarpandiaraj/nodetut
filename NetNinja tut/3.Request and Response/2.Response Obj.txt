@@ -1,0 +1,177 @@
+p                                2.Response Obj
+
+To get the response in the browser,
+    1.we have to set the header
+    2.then write the Response
+    3.end the response
+
+    In server.js
+    const http = require('http');
+
+    const server = http.createServer((req, res) =>{
+        //set the header content type
+        res.setHeader('content-type', 'text/plain')
+
+        res.write('hello ninja')
+        res.end();
+
+    });
+
+    server.listen(3000, 'localhost', () =>{
+    console.log('listening for request on port 3000')
+})
+
+o/p 
+listening for request on port 3000
+
+now if we open the browser and run the localhost:3000 we get the "hello ninja" in the browser window.
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+To send the html as a response change the the content-type
+
+    In server.js
+    const http = require('http');
+
+    const server = http.createServer((req, res) =>{
+        //set the header content type
+        res.setHeader('content-type', 'text/html')
+
+        res.write(<p>hello ninja</p>)
+        res.end();
+
+    });
+
+    server.listen(3000, 'localhost', () =>{
+    console.log('listening for request on port 3000')
+})
+o/p 
+listening for request on port 3000
+
+now if we open the browser and run the localhost:3000 we get the "hello ninja" in the browser window.
+but this tym we inspect the element we can see the html element.
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+As far now sending single html tag as a response, but if we send multiple tag as res like this, the code looks messy.
+So, we gonna create the html file seperately and gonna read that file and sent that as a response.
+
+In index.html
+<html>
+    <head></head>
+    <body>
+        <h1>Hello ninja</h1>
+        <p>Hello World</p>
+        <p>Your path to become a node.js ninja</p>
+    </body>
+</html>
+
+  In server.js
+    const http = require('http');
+    const fs = require('fs'); // importing the file odule to read the index.html file
+
+    const server = http.createServer((req, res) =>{
+        //set the header content type
+        res.setHeader('content-type', 'text/html')
+
+        //reading the  html file
+        fs.readFile('index.html', (err, data) =>{
+            if(err){
+                console.log(err);
+            }else{
+                res.write(data);
+                res.end();
+            }
+        })
+
+    });
+
+    server.listen(3000, 'localhost', () =>{
+    console.log('listening for request on port 3000')
+})
+
+o/p 
+In terminal
+    listening for request on port 3000
+In browser window
+    Hello ninja
+    hello world
+    Your path to become a node.js ninja
+///////////////////////////////////////////////////////////////////////////////////////////
+
+Now we are going to create the different routes and going to the different pages like about,404.
+
+ In index.html
+ <html>
+    <head></head>
+    <body>
+        <h1>home</h1>
+    </body>
+ </html>
+
+In about.html
+ <html>
+    <head></head>
+    <body>
+        <h1>about</h1>
+    </body>
+ </html>
+
+ In 404.html
+ <html>
+    <head></head>
+    <body>
+        <h1>404</h1>
+    </body>
+ </html>
+
+ In server.js
+    const http = require('http');
+    const fs = require('fs'); // importing the file odule to read the index.html file
+
+    const server = http.createServer((req, res) =>{
+        //set the header content type
+        res.setHeader('content-type', 'text/html')
+
+        let path = '';
+        switch(req.ur){
+            case '/' :
+            path = 'index.html';
+            break;
+
+            case '/about' :
+            path = 'about.html';
+            break;
+
+            default :
+            path = '404.html';
+            break;
+        }
+
+        //reading the  html file
+        fs.readFile(path, (err, data) =>{
+            if(err){
+                console.log(err);
+            }else{
+                res.write(data);
+                res.end();
+            }
+        })
+
+    });
+
+    server.listen(3000, 'localhost', () =>{
+    console.log('listening for request on port 3000')
+})
+In browser window
+/ --> home
+/about --> about
+/zsdgdbdf -> 404
+
+
+
+
+
+
+
+

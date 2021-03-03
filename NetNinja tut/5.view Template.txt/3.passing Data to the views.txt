@@ -1,0 +1,49 @@
+                                    3.passing Data to the views
+
+To write the dynamic code
+    <% const name= 'mario' %> doesn't render to the screen
+
+To o/p the dynamic content in the tag
+    <p><%= name %></p>   ---> <p>mario</p> value rendered to the screen.
+
+To pass the data from the app.js to views
+
+in app.js  
+    app.get('/', (req, res) =>{
+        res.render('index' ,{name : 'mario'}) //sending name as second arg to the index.ejs
+    })
+
+In index.ejs
+    <p><%= name %></p> // accessing the name sent by the app.js
+
+///////////////////////////////////////////////////////////////////////////////
+Passing array in the app.js to views and render that array in views
+
+In app.js
+    const blogs = [
+        {title : 'hlo1', snip : 'snip1'},
+        {title : 'hlo2', snip : 'snip2'},
+        {title : 'hlo3', snip : 'snip3'},
+    ]
+    app.get('/', (req,res) =>{
+        res.render('index', {blogs : blogs})
+    } )
+
+In index.ejs
+
+<% if(blogs.length > 0) {%>
+<% blogs.map(item => {%>
+    <p><%= blogs.title  %></p>
+    <p><%= blogs.snip %></p>
+<%}) %>
+<% } %>
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+EJS Templates
+
+--> Ejs Templates are processed through the Ejs views engine on the server.
+
+ejs file ---> Ejs view engine -----> html
+                (wait foe dynamic data and convert to html)
+
+                

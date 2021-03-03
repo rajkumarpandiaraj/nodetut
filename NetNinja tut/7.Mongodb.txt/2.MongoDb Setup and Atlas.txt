@@ -1,0 +1,88 @@
+                                7.MongoDb Setup and Atlas
+
+1.login to the mongodb atlas.
+2.Build cluster -> chose free one -> cluster name = nodetuts -> create cluster.
+3.After the cluster got created -> click Collection -> database name = nodetuts -> Collection name = blogs -> create.
+4. create new database user
+    -> database access in side bar -> create new database user ->  user name and password -> add user.
+    we are going to use this user later.
+5. click the cluster in sidebar --> connect --> connect from our  app -> copy the connection string
+6. In app.js
+    const url = paste the connection string.(change the user name and password created in step 4)
+
+7.using mongoose to connect with mongodb
+About Mongoose :
+    -> Mongoose is an ODM library - Object Document Mapping library.
+        user Model --> user.get(), user.findById()
+        Blog Model --> Blog.deleteOne()
+    -> Schemas and Models
+        -> Schemas defines the structure of a type of data/document
+            - properties and property types
+        User Schema:
+            -name(string), required
+            -age(number)
+            -bio(string), required
+8. Installing mongoose:
+    npm i mongoose
+9.In app.js
+    const mongoose = require('mongoose');
+
+    mongoose.connect(url in step 6)
+    now we  get the deprecated warning, to stop this warning
+    mongoose.connect('url', {useNewUrlParser : true, useUnifieldTopology : true})
+    .then((result) => {console.log('connected to the db')})
+    .catch(err => console.log('db connection err'));
+10.we don't want our server to listen for requird still we connect with our database, To do that,
+mongoose.connect('url', {useNewUrlParser : true, useUnifieldTopology : true})
+    .then((result) => {
+        app.listen(3000);
+        console.log('connected to the db')
+        })
+    .catch(err => console.log('db connection err'));
+
+11.creating model and schema for the db
+    In models/Blog.js
+        const mongoose = require('mongoose');
+        const schema = mongoose.schema
+
+        const blogSchema = new schema({
+            title : {
+                type : string,
+                require : true,
+            },
+            snippet : {
+                type : string,
+                require : true,
+            },
+            body : {
+                type : string,
+                require : true,
+            }
+        }, {timestamps : true})
+
+12. we  created the schema, now we have to paste the schema in the model.
+
+In models/Blog.js
+        const mongoose = require('mongoose');
+        const schema = mongoose.schema()
+
+        const blogSchema = new schema({
+            title : {
+                type : string,
+                require : true,
+            },
+            snippet : {
+                type : string,
+                require : true,
+            },
+            body : {
+                type : string,
+                require : true,
+            }
+        }, {timestamps : true})
+
+        const Blog = mongoose.model('Blog', blogSchema)
+                                        |
+                                    singular of the Collection name
+
+        module.exports = Blog

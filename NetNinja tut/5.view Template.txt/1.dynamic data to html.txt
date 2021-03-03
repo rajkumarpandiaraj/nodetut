@@ -1,0 +1,43 @@
+                            1.Adding Dynamic data to the Html
+
+we can inject the dynamic data to the html in express using Express Handlebars, Pug, EJS
+Now we gonna use Ejs which is quite similar to the EJS
+
+Installing Ejs
+        --> npm i ejs
+
+we have change the setting to use the EJS as the view Engine by sing app.set()//change or define the setting.
+
+By settings ejs as the View engine, express looks for the ejs files in the views folder by default
+
+you can also change that in the setting by app.set('views', 'name of the folder where u keep the ejs file.')
+
+In app.js
+    const express = require('express') //importing the express module
+
+    //creating the express app
+    const app = express()
+
+    //register Ejs by setting
+    app.set('view engine', 'ejs');
+
+    //lister for request
+    app.listen(3000);
+
+    app.get('/', (req,res) =>{
+        res.sendFile('./index.html', {root : __dirname});
+    });
+    
+    app.get('/about', (req,res) =>{
+        res.sendFile('./about.html', {root : __dirname});
+    });
+
+    //redirect
+    app.get('/about-me',(req,res) =>{
+        res.redirect('/about');
+    })
+
+    //404
+    app.use((req,res) =>{
+        res.status(404).sendFile('./404.html', {root : __dirname});
+    })

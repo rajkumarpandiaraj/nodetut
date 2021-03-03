@@ -1,0 +1,18 @@
+//Global object is same like browser's window object
+In the windew Obj there is lots of method and properties, like that Global Obj also have many methods and properties.
+
+In Test.js
+
+console.log(global);
+
+to run --> node Test // list of methods and properties.
+
+In Test.js
+console.log(_dirname) //gives the absolute path of the folder
+console.log(_filename) //gives the absolute path of the file
+
+//_dirname and _filename,setInterval(), setTimeout() are the properties of the global Obj.
+
+window Obj can access te DOm nodes but the global Obj can't.
+for an example: global Obj can't use the querySelector.
+

@@ -1,0 +1,93 @@
+                                    Express
+
+install express using npm i express -s
+
+In app.js
+    const express = require('express') //importing the express module
+
+    //creating the express app
+    const app = express()
+
+    //lister for request
+    app.listen(3000);
+
+    app.get('/', (req,res) =>{
+        res.Write('hello') //no need to set the res header and statusCode.
+    });
+o/p :
+In browser
+    if we try access the localhost:3000
+    we get hello as a response
+
+////////////////////////////////////////////////////////////////////
+To get Html file as a response use res.sendFile
+
+In app.js
+    const express = require('express') //importing the express module
+
+    //creating the express app
+    const app = express()
+
+    //lister for request
+    app.listen(3000);
+
+    app.get('/', (req,res) =>{
+        res.sendFile('./index.html', {root : __dirname});
+    });
+    
+    app.get('/about', (req,res) =>{
+        res.sendFile('./about.html', {root : __dirname});
+    });
+
+
+In browser
+    if we try access the localhost:3000 and
+    / --> home
+    /about --> about
+
+/////////////////////////////////////////////////////////////////////
+//404 pages using use()
+// express runs the code from the top to bottom if the url matches the some of the get func, that func got executes and stop
+the execution, if no one gets matches then app.use() got triggered
+
+In app.js
+    const express = require('express') //importing the express module
+
+    //creating the express app
+    const app = express()
+
+    //lister for request
+    app.listen(3000);
+
+    app.get('/', (req,res) =>{
+        res.sendFile('./index.html', {root : __dirname});
+    });
+    
+    app.get('/about', (req,res) =>{
+        res.sendFile('./about.html', {root : __dirname});
+    });
+
+    //redirect
+    app.get('/about-me',(req,res) =>{
+        res.redirect('/about');
+    })
+
+    //404
+    app.use((req,res) =>{
+        res.status(404).sendFile('./404.html', {root : __dirname});
+    })
+
+
+In browser
+    if we try access the localhost:3000 and
+    / --> home
+    /about --> about
+    /hdsdhfdfj --> 404
+
+
+To redirect use res.redirect()
+
+//redirect
+app.get('/about-me',(req,res) =>{
+    res.redirect('/about');
+})

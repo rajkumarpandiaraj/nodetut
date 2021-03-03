@@ -1,0 +1,36 @@
+                        5.Stream and buffer
+                                            buffer
+Browser ---> Data -------> Data ----------> Partially loaded Data------> Whole Data or source
+            Chunks          Chunks          
+            fully loaded    fully loaded
+
+In Stream whole data is  divided into small chunks and that chunks got loaded quickly and  vdo got started to run and the next chunk got starts to buffer.
+
+//createReadStream()
+
+const fs = require('fs');
+
+const readStream = fs.createReadStream('./docs/blog1.txt', {encoding : 'utf8'}); //createReadStream(file location, encoding the data to string)
+
+readStream.on('data', (chunk) =>{ // adding the data EventListener to the readStream, whenever readStream get new Data this func got triggered
+    console.log(chunk);
+})
+///////////////////////////////////////////////////////////////////////////////////
+
+//createWriteStream()
+we are going to write the data red from the blog1 into blog2
+
+const fs = require('fs')
+
+const readStream = fs.createReadStream('./docs/blog1.txt',{encoding : 'uft8'});
+const writeStream = fs.createWriteStream('./docs/blog2.txt')
+
+readStream.on('data', (chunk) =>{
+    console.log(chunk)
+    writeStream.write(chunk)
+})
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+The above read and write operation can be done by piping also.
+readStream.pipe(writeStream);

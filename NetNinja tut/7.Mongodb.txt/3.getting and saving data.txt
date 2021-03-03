@@ -1,0 +1,41 @@
+                        3.Getting and Saving data.
+
+Now we going to get the data from the user and saving it in th Db using model
+
+In app.js
+    const Blog = reqiure('./models/blog')
+
+    app.post('/add-blog', (req, res) =>{
+        const blog = new Blog({
+            title : 'new blog',
+            snippet : 'about my new blog',
+            body : 'blog body'
+        });
+        blog.save().then(() => console.log('blog added'))
+        .catch(err => console.log(err.message))
+    })
+
+    //To get all the blogs
+        app.get('/all-blogs', (req,res) =>{
+            Blog.find().then(result => {
+                res.render('index', {result : result}) //we can render that result in th html.
+            }).catch(err => console.log(err))
+        })
+
+    //getting the single blogs
+        app.get('/single-blog', (req,res) =>{
+            Blog.findById('id')
+            .then((result) => res.send(result))
+            .catch(err => console.log(err));
+        })
+
+.sort()
+
+we can sort the data based on the particular field.
+    //To get all the blogs
+            app.get('/all-blogs', (req,res) =>{
+                Blog.find().sort(createdAt : -1)then(result => {
+                    res.render('index', {result : result}) //we can render that result in th html.
+                }).catch(err => console.log(err))
+            })
+

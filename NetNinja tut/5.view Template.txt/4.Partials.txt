@@ -1,0 +1,37 @@
+                                    4.Partials
+
+In every html, there must be some common tag like nav,head
+instead of creating different head and nav, we can create one head and nav 
+and using it wherever we want.
+
+In views/partials/head.ejs
+    <head>
+        <link></link>
+        <link></link>
+        <title></title>
+    </head>
+
+
+In views/index.ejs
+ <html>
+    <%- @include('./partials/head.ejs') %>
+    <body>
+        <h1>home</h1>
+    </body>
+ </html>
+
+In views/about.ejs
+ <html>
+    <%- @include('./partials/head.ejs') %>
+    <body>
+        <h1>about</h1>
+    </body>
+ </html>
+
+ In views/404.ejs
+ <html>
+    <%- @include('./partials/head.ejs') %>
+    <body>
+        <h1>404</h1>
+    </body>
+ </html>
